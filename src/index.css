@@ -1,0 +1,35 @@
+body {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  text-align: center;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+.form-input{
+  justify-content: center;
+}
+.staffDetail-section{
+  min-height: 100vh;
+
+}
+.staffDetail-section .container{
+  margin: auto;
+  justify-content: center;
+
+
+  width: 60vw;
+  
+}
+.staffDetail-section label{
+  float: left;
+  margin: 1rem;
+}
