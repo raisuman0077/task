@@ -22,43 +22,58 @@ const Task4 = () => {
         }
         fetchData()
       }, []);
-      const uniqueStaff = [...new Set(datas.map(data=>data.staffType))];
-      const uniqueEntryShift = [...new Set(datas.map(data=>data.shift.entry))];
-      const uniqueExitShift = [...new Set(datas.map(data=>data.shift.exit))];
-   
 
-   
- const handleChange = (e) =>{
-    e.preventDefault();
-    setSelectedStaff(e.target.value);
- }
+    const uniqueStaff = [...new Set(datas.map(data=>data.staffType))];
+    const uniqueEntryShift = [...new Set(datas.map(data=>data.shift.entry))];
+    const uniqueExitShift = [...new Set(datas.map(data=>data.shift.exit))];
+      
+ 
+ 
+    const handleChange = (e) =>{
+        e.preventDefault();
+        setSelectedStaff(e.target.value);
+    }
+    const resetShift =()=>{
+        const resetEntry = document.getElementById('entryShift');
+        const resetExit = document.getElementById('exitShift');
+        resetEntry.value='';
+        resetExit.value='';
+    }
+
   return (
     <div className='staffDetail-section'>
     <hr />
     <h1>Staff Details</h1>
-   
     <div className='row g-4 container'>
     <div className='col-md-6'>
-    <label htmlFor="validationTooltip04" className="form-label"><h4>Staff Type</h4></label>
-    <select onChange={(e)=>handleChange(e)} className="form-select" id="validationTooltip04" required>
-    <option selected disabled value="">Select staff type</option>
-    {uniqueStaff.map((staff,id)=>(
-        <option key={id}>{staff}</option>
+        <label htmlFor="validationTooltip04" className="form-label">
+            <h4>Staff Type</h4>
+        </label>
+        <select 
+        onChange={(e)=>handleChange(e)} 
+        onClick={resetShift}  
+        className="form-select" 
+        id="validationTooltip04" 
+        required>
+            <option selected disabled value="">Select staff type</option>
+        {uniqueStaff.map((staff,id)=>(
+            <option  key={id}>{staff}</option>
         ))}
-    </select>
+        </select>
     </div>
 
     <div className='col-md-6'>
         <label htmlFor="validationTooltip04" className="form-label">
             <h4>Shift</h4>
         </label>
-        <select  className="form-select" id="validationTooltip04" required>
+        <select  className="form-select" id="entryShift" required>
             <option selected disabled value="">Select entry shift</option>
             {uniqueEntryShift.map((entry,id)=>(
                 <option key={id}>{entry}</option>
                 ))}
-        </select>
-        <select  className="form-select mt-1" id="validationTooltip04" required>
+                </select>
+                
+        <select  className="form-select mt-1" id="exitShift" required>
             <option  selected disabled value="">Select exit shift</option>
             {uniqueExitShift.map((exit,id)=>(
                 <option key={id}>{exit}</option>
@@ -100,21 +115,23 @@ const Task4 = () => {
             className="form-select"
             value={selectedId} 
             onChange={(e)=>setSelectedName(e.target.value)} 
-            id="validationTooltip04" required>
+            id="validationTooltip04" 
+            required>
                 <option selected disabled value="">Select name</option>
-        {datas.filter(data=>data.staffType===selectedStaff).map((data,id)=>(
+            {datas.filter(data=>data.staffType===selectedStaff).map((data,id)=>(
                 <option  key={id}>{data.fullName}</option>
             ))}
-        </select> : <select 
-        className="form-select"
-        value={selectedId} 
-        onChange={(e)=>setSelectedName(e.target.value)} 
-        id="validationTooltip04" required>
-            <option selected disabled value="">Select name</option>
-    {datas.map((data,id)=>(
-            <option  key={id}>{data.fullName}</option>
-        ))}
-    </select> 
+        </select> : 
+        <select 
+            className="form-select"
+            value={selectedId} 
+            onChange={(e)=>setSelectedName(e.target.value)} 
+            id="validationTooltip04" required>
+                <option selected disabled value="">Select name</option>
+            {datas.map((data,id)=>(
+                <option  key={id}>{data.fullName}</option>
+            ))}
+        </select> 
         }
     </div>
     </div>
